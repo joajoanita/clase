@@ -1,0 +1,97 @@
+@echo off
+ 
+color 0B
+title Calculadora automatica
+echo  Hora: %TIME% - Dia: %DATE% 
+echo  ===============================================================================
+echo    %USERNAME%, vamos a hacer una calculadora simple que haga todas las operaciones
+echo  ===============================================================================
+pause>nul
+echo    Tendremos como opciones suma (+), resta (-), multiplicacion (*) o division (/)
+echo  ===============================================================================
+pause>nul
+
+echo  ===========================================
+echo  Ahora vas a elegir todo lo que puedes hacer:
+echo  ===========================================
+:Menu
+ cls
+ set opcion=
+ echo  ====================  
+ echo   Elige una opcion...
+ echo  ====================
+ echo.
+ echo  ====================
+ echo   1 - Sumar
+ echo   2 - Restar
+ echo   3 - Multiplicar
+ echo   4 - Dividir
+ echo   5 - Salir
+ echo  ==================== 
+ set /p opcion=
+  
+ if (%opcion%) == (1) goto Re1
+ if (%opcion%) == (2) goto Re2
+ if (%opcion%) == (3) goto Re3
+ if (%opcion%) == (4) goto Re4
+ if (%opcion%) == (5) goto Salir
+  
+ echo.
+ echo. Opcion incorrecta
+ echo.
+ pause
+ goto Menu
+  
+ echo  =========================
+ echo  Ahora pon tu los numeros
+ echo  =========================
+ set/p numero3= "Dime un numero "
+ echo  =========================
+pause>nul
+ set/p numero4= "Dime otro numero "
+ echo  =============================
+pause
+
+:Re1
+ set/a sumar=%numero3% + %numero4%
+ echo  ==================================
+ echo El resultado de la suma es %sumar%
+ echo  ==================================
+ pause
+ goto Menu
+  
+:Re2
+ set/a restar=%numero3% - %numero4%
+ echo  ====================================
+ echo El resultado de la resta es %restar%
+ echo  ====================================
+ pause
+ goto Menu
+  
+:Re3
+ set/a multiplicar=%numero3% * %numero4%
+ echo  ==================================================
+ echo El resultado de la multiplicacion es %multiplicar%
+ echo  ==================================================
+ pause
+ goto Menu
+  
+:Re4
+ if %numero4%==0 (goto no se puede) else (goto dividir)
+ pause
+:nosepuede
+ echo  ================================
+ echo El denominador no puede ser cero
+ echo  ================================
+ goto denominador
+
+ pause
+
+ :dividir
+ set/a dividir=%numero3% / %numero4%
+ echo  =========================================
+ echo  El resultado de la division es %dividir%
+ echo  =========================================
+
+:Salir
+ Exit
